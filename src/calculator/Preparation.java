@@ -20,6 +20,10 @@ public class Preparation {
 
     private static int cursor = 0;
 
+    public static int getCursor() {
+        return cursor;
+    }
+
     public static void moveCursorLeft() {
         if (cursor > 0) {
             cursor--;
