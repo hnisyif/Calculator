@@ -21,15 +21,17 @@ public class Calculator extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        //Variables
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
         Scene scene = new Scene(root);
+        Image icon = new Image("Calculator.png");
         
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        
+        //Initialize
         stage.setTitle("Calculator");
-        
-        Image icon = new Image("digits.png");
         stage.getIcons().add(icon);
-        
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
