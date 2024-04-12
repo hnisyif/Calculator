@@ -20,10 +20,6 @@ public class Preparation {
 
     private static int cursor = 0;
 
-    public static int getCursor() {
-        return cursor;
-    }
-
     public static void moveCursorLeft() {
         if (cursor > 0) {
             cursor--;
@@ -36,14 +32,14 @@ public class Preparation {
         }
     }
 
-    public static void addToBareBones(int index, char character) {
-        bareBones = bareBones.substring(0, index) + character + bareBones.substring(index, bareBones.length());
+    public static void addToBareBones(char character) {
+        bareBones = bareBones.substring(0, cursor) + character + bareBones.substring(cursor, bareBones.length());
         cursor++;
     }
 
-    public static void removeFromBareBones(int index) {
+    public static void removeFromBareBones() {
         if (bareBones.length() > 0 && cursor > 0) {
-            bareBones = bareBones.substring(0, index - 1) + bareBones.substring(index, bareBones.length());
+            bareBones = bareBones.substring(0, cursor - 1) + bareBones.substring(cursor, bareBones.length());
             cursor--;
         }
         if (bareBones.length() == 0) {
@@ -62,8 +58,12 @@ public class Preparation {
                 display += '|';
             }
 
-            if (bareBones.charAt(i) == '+' || bareBones.charAt(i) == '–' || bareBones.charAt(i) == '*' || bareBones.charAt(i) == '/') {
+            if (bareBones.charAt(i) == '+' || bareBones.charAt(i) == '–' || bareBones.charAt(i) == '*' || bareBones.charAt(i) == '÷') {
                 display += " " + bareBones.charAt(i) + " ";
+                continue;
+            }
+            if (bareBones.charAt(i) == '/'){
+                display += " ÷ ";
                 continue;
             }
             if (bareBones.charAt(i) == 'S') {
@@ -287,34 +287,29 @@ public class Preparation {
             equation = String.valueOf(Math.PI);
         }
         
+        equation = String.valueOf(Double.parseDouble(equation));
+        
         if (!equation.equals("Infinity") && !equation.equals("NaN")) {
-            int rounding = 0;
-            for (int i = 0; i < equation.length(); i++) {
-                if (equation.charAt(i) == '.' || i == 10) {
-                    rounding = 10 - i;
-                    break;
-                }
-            }
-            BigDecimal rounded = new BigDecimal(equation).setScale(rounding, RoundingMode.HALF_UP);
+            BigDecimal rounded = new BigDecimal(equation).setScale(16, RoundingMode.HALF_UP);
             equation = String.valueOf(rounded);
         }
 
         if (equation.equals("Infinity") || equation.equals("NaN")) {
             if (equation.equals("Infinity")) {
-                display = "Defined by Computer as Infinite";
+                display = "Defined by Computer as Infinity";
             }
             if (equation.equals("NaN")) {
                 display = "Not a Number";
             }
             bareBones = "";
         } else {
+            display = "= " + equation;
             for (int i = 0; i < equation.length(); i++) {
                 if (equation.charAt(i) == 'E') {
                     equation = equation.substring(0, i) + "*10^" + equation.substring(i + 1, equation.length());
                     break;
                 }
             }
-            display = "= " + equation;
             bareBones = equation;
         }
         equation = "";

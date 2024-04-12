@@ -6,22 +6,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="480.0" styleClass="mainGradient" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="780.0" prefWidth="480.0" styleClass="mainGradient" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.FXMLDocumentController">
    <children>
-      <Button layoutX="196.0" layoutY="211.0" mnemonicParsing="false" opacity="0.7" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="％" textFill="WHITE">
+      <Button layoutX="196.0" layoutY="211.0" mnemonicParsing="false" opacity="0.7" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="END" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
       <Pane prefHeight="200.0" prefWidth="480.0" styleClass="pain">
          <children>
-            <TextField alignment="CENTER_RIGHT" editable="false" layoutX="15.0" layoutY="25.0" opacity="0.9" prefHeight="150.0" prefWidth="450.0">
+            <TextField fx:id="monkey" alignment="CENTER_RIGHT" editable="false" layoutX="15.0" layoutY="25.0" opacity="0.9" prefHeight="150.0" prefWidth="450.0">
                <font>
                   <Font size="50.0" />
                </font>
             </TextField>
          </children></Pane>
-      <Button layoutX="5.0" layoutY="688.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="0" textFill="WHITE">
+      <Button layoutX="5.0" layoutY="688.0" mnemonicParsing="false" onAction="#addZero" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="0" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
@@ -126,14 +126,14 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <Button layoutX="387.0" layoutY="496.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="/" textFill="WHITE">
+      <Button layoutX="387.0" layoutY="496.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="÷" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
       <Button layoutX="292.0" layoutY="496.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="x" textFill="WHITE">
          <font>
-            <Font size="30.0" />
+            <Font size="26.0" />
          </font>
       </Button>
       <Button layoutX="5.0" layoutY="592.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="1" textFill="WHITE">
@@ -151,7 +151,7 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <Button layoutX="387.0" layoutY="592.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="―" textFill="WHITE">
+      <Button layoutX="387.0" layoutY="592.0" mnemonicParsing="false" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="–" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>

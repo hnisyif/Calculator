@@ -117,7 +117,11 @@ public class Calculation {
                     break;
                 case 'T':
                     b = lastIndex(equation, i + 1);
-                    equation = replace(equation, i, String.valueOf(Math.tan(toDouble(equation, i + 1, b))), b);
+                    if (Math.tan(toDouble(equation, i + 1, b)) - Math.tan(Math.PI / 2d) == 0){
+                        equation = replace(equation, i, "Infinity", b);
+                    } else {
+                        equation = replace(equation, i, String.valueOf(Math.tan(toDouble(equation, i + 1, b))), b);
+                    }
                     i++;
                     break;
                 case 's':
