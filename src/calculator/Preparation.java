@@ -58,12 +58,16 @@ public class Preparation {
                 display += '|';
             }
 
-            if (bareBones.charAt(i) == '+' || bareBones.charAt(i) == '–' || bareBones.charAt(i) == '*' || bareBones.charAt(i) == '÷') {
+            if (bareBones.charAt(i) == '+' || bareBones.charAt(i) == '–') {
                 display += " " + bareBones.charAt(i) + " ";
                 continue;
             }
             if (bareBones.charAt(i) == '/'){
                 display += " ÷ ";
+                continue;
+            }
+            if (bareBones.charAt(i) == '*'){
+                display += " x ";
                 continue;
             }
             if (bareBones.charAt(i) == 'S') {
@@ -276,8 +280,6 @@ public class Preparation {
         formatEquation();
         
         if (validEquation() == false) {
-            System.out.println(display);
-            reset();
             return;
         }
         
