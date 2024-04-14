@@ -102,7 +102,7 @@ public class Calculation {
                 case '√':
                     a = firstIndex(equation, i - 2);
                     b = lastIndex(equation, i + 2);
-                    equation = replace(equation, a, String.valueOf(Math.pow(toDouble(equation, a, i - 1), 1d / toDouble(equation, i + 2, b))), b);
+                    equation = replace(equation, a, String.valueOf(Math.pow(toDouble(equation, i + 2, b), 1d / toDouble(equation, a, i - 1))), b);
                     i = a + 1;
                     break;
                 case 'S':
