@@ -292,7 +292,7 @@ public class Preparation {
         equation = String.valueOf(Double.parseDouble(equation));
         
         if (!equation.equals("Infinity") && !equation.equals("NaN")) {
-            BigDecimal rounded = new BigDecimal(equation).setScale(16, RoundingMode.HALF_UP);
+            BigDecimal rounded = new BigDecimal(equation).setScale(14, RoundingMode.HALF_UP);
             equation = String.valueOf(rounded);
         }
 
@@ -308,7 +308,7 @@ public class Preparation {
             display = "= " + equation;
             for (int i = 0; i < equation.length(); i++) {
                 if (equation.charAt(i) == 'E') {
-                    equation = equation.substring(0, i) + "*10^" + equation.substring(i + 1, equation.length());
+                    equation = '(' + equation.substring(0, i) + "*10^" + equation.substring(i + 1, equation.length()) + ')';
                     break;
                 }
             }
