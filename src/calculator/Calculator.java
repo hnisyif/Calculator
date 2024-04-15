@@ -18,16 +18,16 @@ import javafx.scene.image.Image;
  * @author weig4542
  */
 public class Calculator extends Application {
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         //Variables
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
         Scene scene = new Scene(root);
         Image icon = new Image("Calculator.png");
-        
+
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        
+
         //Initialize
         stage.setTitle("Calculator");
         stage.getIcons().add(icon);
@@ -42,5 +42,5 @@ public class Calculator extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
