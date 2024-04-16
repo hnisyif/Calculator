@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package calculator;
 
 /**
@@ -10,6 +5,21 @@ package calculator;
  * @author weig4542
  */
 public class Calculation {
+
+    //DRG modifiers to convert radians to degrees, gradians, or jsut radians
+    private static double dRGMod() {
+        //Get whether it's degrees, radians, or gradians
+        switch (FXMLDocumentController.getDRG()) {
+            case 0:
+                return 180d / Math.PI;
+            case 1:
+                return 1d;
+            case 2:
+                return 200d / Math.PI;
+            default:
+        }
+        return 1.0;
+    }
 
     //Returns a string with some middle part added or replacing another part. I thought it would look nicer than having substrings everywhere.
     private static String replace(String original, int a, String middle, int b) {
@@ -29,7 +39,7 @@ public class Calculation {
                 break;
             }
         }
-        //SPecial case for pi
+        //Special case for pi
         if (equation.equals("π")) {
             return Math.PI * Math.pow(-1, negative);
         }
@@ -166,12 +176,13 @@ public class Calculation {
                     break;
                 case 'S':
                     b = lastIndex(equation, i + 1);
-                    equation = replace(equation, i, String.valueOf(Math.sin(toDouble(equation, i + 1, b))), b);
+                    //If the user is in degrees or gradians, convert to radians so the computer can do the math
+                    equation = replace(equation, i, String.valueOf(Math.sin(toDouble(equation, i + 1, b) / dRGMod())), b);
                     i++;
                     break;
                 case 'C':
                     b = lastIndex(equation, i + 1);
-                    equation = replace(equation, i, String.valueOf(Math.cos(toDouble(equation, i + 1, b))), b);
+                    equation = replace(equation, i, String.valueOf(Math.cos(toDouble(equation, i + 1, b) / dRGMod())), b);
                     i++;
                     break;
                 case 'T':
@@ -180,25 +191,26 @@ public class Calculation {
                     if (Math.tan(toDouble(equation, i + 1, b)) - Math.tan(Math.PI / 2d) == 0) {
                         equation = replace(equation, i, "Infinity", b);
                     } else {
-                        equation = replace(equation, i, String.valueOf(Math.tan(toDouble(equation, i + 1, b))), b);
+                        equation = replace(equation, i, String.valueOf(Math.tan(toDouble(equation, i + 1, b) / dRGMod())), b);
                     }
                     i++;
                     break;
                 case 's':
                     b = lastIndex(equation, i + 1);
-                    equation = replace(equation, i, String.valueOf(Math.asin(toDouble(equation, i + 1, b))), b);
+                    //If the user is in degrees or gradians, convert the radians result into degrees or radians
+                    equation = replace(equation, i, String.valueOf(Math.asin(toDouble(equation, i + 1, b)) * dRGMod()), b);
                     i++;
                     break;
                 case 'c':
                     b = lastIndex(equation, i + 1);
-                    equation = replace(equation, i, String.valueOf(Math.acos(toDouble(equation, i + 1, b))), b);
+                    equation = replace(equation, i, String.valueOf(Math.acos(toDouble(equation, i + 1, b)) * dRGMod()), b);
                     i++;
                     break;
                 case 't':
                     //Special case to check if the t it's found is actually atan or if it's part of Infinity
                     if (equation.charAt(i + 1) != 'y') {
                         b = lastIndex(equation, i + 1);
-                        equation = replace(equation, i, String.valueOf(Math.atan(toDouble(equation, i + 1, b))), b);
+                        equation = replace(equation, i, String.valueOf(Math.atan(toDouble(equation, i + 1, b)) * dRGMod()), b);
                         i++;
                     }
                     break;

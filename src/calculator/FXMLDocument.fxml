@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onDragDetected="#addTan" prefHeight="780.0" prefWidth="480.0" styleClass="mainGradient" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="780.0" prefWidth="480.0" styleClass="mainGradient" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.FXMLDocumentController">
    <children>
-      <Button layoutX="196.0" layoutY="211.0" mnemonicParsing="false" onAction="#end" opacity="0.7" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="END" textFill="WHITE">
+      <Button layoutX="196.0" layoutY="211.0" mnemonicParsing="false" onAction="#drg" opacity="0.7" prefHeight="50.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="DRG" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -22,6 +23,7 @@
                </font>
             </TextField>
             <ScrollBar fx:id="ape" layoutX="15.0" layoutY="168.0" prefHeight="14.0" prefWidth="450.0" />
+            <Label fx:id="lemur" layoutX="21.0" layoutY="32.0" text="Radians" />
          </children></Pane>
       <Button layoutX="5.0" layoutY="688.0" mnemonicParsing="false" onAction="#addZero" opacity="0.7" prefHeight="87.0" prefWidth="87.0" style="-fx-background-color: BLACK;" text="0" textFill="WHITE">
          <font>

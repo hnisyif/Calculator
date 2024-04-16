@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package calculator;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
  * @author weig4542
  */
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-
 public class Preparation {
 
     private static String bareBones = "";
@@ -377,7 +372,8 @@ public class Preparation {
 
         //Round if it's not a special case like Infinity, -Infinity, or NaN
         if (!equation.equals("Infinity") && !equation.equals("-Infinity") && !equation.equals("NaN")) {
-            BigDecimal rounded = new BigDecimal(equation).setScale(14, RoundingMode.HALF_UP);
+            //15 decimal places is the amount double can hold accurately. I decided to use the 15th and 14th decimal place as guard digits so I'm rounding to 13 decimal places.
+            BigDecimal rounded = new BigDecimal(equation).setScale(13, RoundingMode.HALF_UP);
             equation = String.valueOf(rounded);
         }
 

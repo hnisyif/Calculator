@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package calculator;
 
 import java.net.URL;
@@ -10,11 +5,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ScrollBar;
 
 /**
  *
+ * @author hussb3964
  * @author weig4542
  */
 public class FXMLDocumentController implements Initializable {
@@ -23,6 +20,14 @@ public class FXMLDocumentController implements Initializable {
     private TextField monkey;
     @FXML
     private ScrollBar ape;
+    @FXML
+    private Label lemur;
+
+    private static int drg = 1;
+
+    public static int getDRG() {
+        return drg;
+    }
 
     private void changeDisplay() {
         //Fromat the display String based on the barebones string
@@ -48,100 +53,85 @@ public class FXMLDocumentController implements Initializable {
         monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + 14, Preparation.getDisplay().length())));
     }
 
-    @FXML
-    private void addZero(ActionEvent e) {
+    public void addZero(ActionEvent e) {
         //Add this character to barebones
         Preparation.addToBareBones('0');
         //Update the display for the new bare bones equation
         changeDisplay();
     }
 
-    @FXML
-    private void addOne(ActionEvent e) {
+    public void addOne(ActionEvent e) {
         Preparation.addToBareBones('1');
         changeDisplay();
     }
 
-    @FXML
-    private void addTwo(ActionEvent e) {
+    public void addTwo(ActionEvent e) {
         Preparation.addToBareBones('2');
         changeDisplay();
     }
 
-    @FXML
-    private void addThree(ActionEvent e) {
+    public void addThree(ActionEvent e) {
         Preparation.addToBareBones('3');
         changeDisplay();
     }
 
-    @FXML
-    private void addFour(ActionEvent e) {
+    public void addFour(ActionEvent e) {
         Preparation.addToBareBones('4');
         changeDisplay();
     }
 
-    @FXML
-    private void addFive(ActionEvent e) {
+    public void addFive(ActionEvent e) {
         Preparation.addToBareBones('5');
         changeDisplay();
     }
 
-    @FXML
-    private void addSix(ActionEvent e) {
+    public void addSix(ActionEvent e) {
         Preparation.addToBareBones('6');
         changeDisplay();
     }
 
-    @FXML
-    private void addSeven(ActionEvent e) {
+    public void addSeven(ActionEvent e) {
         Preparation.addToBareBones('7');
         changeDisplay();
     }
 
-    @FXML
-    private void addEight(ActionEvent e) {
+    public void addEight(ActionEvent e) {
         Preparation.addToBareBones('8');
         changeDisplay();
     }
 
-    @FXML
-    private void addNine(ActionEvent e) {
+    public void addNine(ActionEvent e) {
         Preparation.addToBareBones('9');
         changeDisplay();
     }
 
-    @FXML
-    private void addPlus(ActionEvent e) {
+    public void addPlus(ActionEvent e) {
         Preparation.addToBareBones('+');
         changeDisplay();
     }
 
-    @FXML
-    private void addMinus(ActionEvent e) {
+    public void addMinus(ActionEvent e) {
         Preparation.addToBareBones('–');
         changeDisplay();
     }
 
-    @FXML
-    private void addMultiply(ActionEvent e) {
+    public void addMultiply(ActionEvent e) {
         Preparation.addToBareBones('*');
         changeDisplay();
     }
 
     @FXML
-    private void addDivide(ActionEvent e) {
+    public void addDivide(ActionEvent e) {
         Preparation.addToBareBones('/');
         changeDisplay();
     }
 
-    @FXML
-    private void addBracket(ActionEvent e) {
+    public void addBracket(ActionEvent e) {
         Preparation.addToBareBones('(');
         changeDisplay();
     }
 
-    @FXML
-    private void addEndBracket(ActionEvent e) {
+    public void addEndBracket(ActionEvent e) {
         Preparation.addToBareBones(')');
         changeDisplay();
     }
@@ -194,8 +184,7 @@ public class FXMLDocumentController implements Initializable {
         changeDisplay();
     }
 
-    @FXML
-    private void addPow(ActionEvent e) {
+    public void addPow(ActionEvent e) {
         Preparation.addToBareBones('^');
         changeDisplay();
     }
@@ -206,8 +195,7 @@ public class FXMLDocumentController implements Initializable {
         changeDisplay();
     }
 
-    @FXML
-    private void addDecimal(ActionEvent e) {
+    public void addDecimal(ActionEvent e) {
         Preparation.addToBareBones('.');
         changeDisplay();
     }
@@ -218,8 +206,7 @@ public class FXMLDocumentController implements Initializable {
         changeDisplay();
     }
 
-    @FXML
-    private void delete(ActionEvent e) {
+    public void delete(ActionEvent e) {
         //Remove a character from bare boens equation
         Preparation.removeFromBareBones();
         changeDisplay();
@@ -232,22 +219,19 @@ public class FXMLDocumentController implements Initializable {
         changeDisplay();
     }
 
-    @FXML
-    private void rightButton(ActionEvent e) {
+    public void rightButton(ActionEvent e) {
         //Move the cursor right
         Preparation.moveCursorRight();
         changeDisplay();
     }
 
-    @FXML
-    private void leftButton(ActionEvent e) {
+    public void leftButton(ActionEvent e) {
         //Move the cursor left
         Preparation.moveCursorLeft();
         changeDisplay();
     }
 
-    @FXML
-    private void equalsButton(ActionEvent e) {
+    public void equalsButton(ActionEvent e) {
         //Call the method of finding what the given equation is equal to
         Preparation.equals();
         if (Preparation.getDisplay().length() > 14) {
@@ -265,9 +249,24 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void end(ActionEvent e) {
-        //End the program
-        System.exit(0);
+    private void drg(ActionEvent e) {
+        //drg is degrees, radians, gradians
+        //Switch to the next type
+        switch (drg) {
+            case 0:
+                drg = 1;
+                lemur.setText("Radians");
+                break;
+            case 1:
+                drg = 2;
+                lemur.setText("Gradians");
+                break;
+            case 2:
+                drg = 0;
+                lemur.setText("Degrees");
+                break;
+            default:
+        }
     }
 
     @Override
