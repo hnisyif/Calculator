@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ScrollBar;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -15,6 +16,9 @@ import javafx.scene.control.ScrollBar;
  * @author weig4542
  */
 public class FXMLDocumentController implements Initializable {
+
+    //There can only be 18 characters on screen at a time
+    private final int MAXIMUM_TEXT_LENGTH = 18;
 
     @FXML
     private TextField monkey;
@@ -33,16 +37,15 @@ public class FXMLDocumentController implements Initializable {
         //Fromat the display String based on the barebones string
         Preparation.formatDisplay();
         //Check whether the string might need to be substringed to onl fit certain parts at a time on screen.
-        if (Preparation.getDisplay().length() > 14) {
-            //There can only be 14 characters on screen at a time
-            //If there's more than 14 find how many substrings of 14 characters fit in the string and set that to the max scroll amount.
-            ape.setMax(Preparation.getDisplay().length() - 14);
+        if (Preparation.getDisplay().length() > MAXIMUM_TEXT_LENGTH) {
+            //If there's more than the max length find how many substrings of max length characters fit in the string and set that to the max scroll amount.
+            ape.setMax(Preparation.getDisplay().length() - MAXIMUM_TEXT_LENGTH);
             //Make the length of the scrolls thumb the size of the bar / the amount of 14 character substrings in the string
-            ape.setVisibleAmount(ape.getMax() / (Preparation.getDisplay().length() - 13));
+            ape.setVisibleAmount(ape.getMax() / (Preparation.getDisplay().length() - (MAXIMUM_TEXT_LENGTH - 1)));
             ape.setVisible(true);
         } else {
             ape.setMax(0);
-            //If the scrolll bar is uneeded then don;t show it
+            //If the scrolll bar is uneeded then don't show it
             ape.setVisible(false);
         }
         if (ape.getValue() > ape.getMax()) {
@@ -50,7 +53,17 @@ public class FXMLDocumentController implements Initializable {
             ape.setValue(ape.getMax());
         }
         //Susbtring the value of where the thumb is on the scroll bar to 14 after or the length of the string depending on which is smaller.
-        monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + 14, Preparation.getDisplay().length())));
+        monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + MAXIMUM_TEXT_LENGTH, Preparation.getDisplay().length())));
+    }
+
+    public void addScience() {
+        //Add this character to barebones
+        Preparation.addToBareBones('*');
+        Preparation.addToBareBones('1');
+        Preparation.addToBareBones('0');
+        Preparation.addToBareBones('^');
+        //Update the display for the new bare bones equation
+        changeDisplay();
     }
 
     public void addZero(ActionEvent e) {
@@ -234,9 +247,9 @@ public class FXMLDocumentController implements Initializable {
     public void equalsButton(ActionEvent e) {
         //Call the method of finding what the given equation is equal to
         Preparation.equals();
-        if (Preparation.getDisplay().length() > 14) {
-            ape.setMax(Preparation.getDisplay().length() - 14);
-            ape.setVisibleAmount(ape.getMax() / (Preparation.getDisplay().length() - 13));
+        if (Preparation.getDisplay().length() > MAXIMUM_TEXT_LENGTH) {
+            ape.setMax(Preparation.getDisplay().length() - MAXIMUM_TEXT_LENGTH);
+            ape.setVisibleAmount(ape.getMax() / (Preparation.getDisplay().length() - (MAXIMUM_TEXT_LENGTH - 1)));
             ape.setVisible(true);
         } else {
             ape.setMax(0);
@@ -245,7 +258,7 @@ public class FXMLDocumentController implements Initializable {
         if (ape.getValue() > ape.getMax()) {
             ape.setValue(ape.getMax());
         }
-        monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + 14, Preparation.getDisplay().length())));
+        monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + MAXIMUM_TEXT_LENGTH, Preparation.getDisplay().length())));
     }
 
     @FXML
@@ -281,7 +294,7 @@ public class FXMLDocumentController implements Initializable {
         ape.valueProperty().addListener((obs, oldVal, newVal) -> {
             //When it's interacted with, change the susbtring the user sees depending on where the thumb is on the scroll bar.
             //We don't have to check to make sure the size of the String is correct since it wouldn't change from interactign with the scroll bar.
-            monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + 14, Preparation.getDisplay().length())));
+            monkey.setText(Preparation.getDisplay().substring((int) ape.getValue(), Math.min((int) ape.getValue() + MAXIMUM_TEXT_LENGTH, Preparation.getDisplay().length())));
         });
     }
 

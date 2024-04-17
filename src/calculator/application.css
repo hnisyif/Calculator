@@ -1,7 +1,19 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+@font-face {
+    font-family: 'Roboto Mono';
+    src: url('/resources/fonts/RobotoMono-Regular.ttf');
+}
+.text {
+    -fx-font-family: "Roboto Mono";
+    -fx-font-size: 18px;
+}
+.text-input {
+    -fx-font-family: "Roboto Mono";
+    -fx-font-size: 36px;
+}
 .pain {
-	-fx-background-color: linear-gradient(#348F50, #99f2c8);
+    -fx-background-color: linear-gradient(#348F50, #99f2c8);
 }
 .mainGradient{
-	-fx-background-color: linear-gradient(to bottom right, #99f2c8,#1f4037);
+    -fx-background-color: linear-gradient(to bottom right, #99f2c8,#1f4037);
 }
